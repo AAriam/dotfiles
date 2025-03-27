@@ -92,6 +92,14 @@ cask "visual-studio-code"
 cask "iterm2"
 
 
+# Writing
+# -------
+
+# MacTeX
+# - https://formulae.brew.sh/cask/mactex
+cask "mactex"
+
+
 # Browsers
 # --------
 
@@ -118,6 +126,10 @@ cask "lastpass"
 
 # Communication
 # -------------
+
+# Microsoft Teams
+# - https://formulae.brew.sh/cask/microsoft-teams
+cask "microsoft-teams"
 
 # Telegram
 # - https://formulae.brew.sh/cask/telegram
@@ -156,16 +168,16 @@ cask "obs"
 cask "vlc"
 
 
-# VPNs
-# ----
-
-# Private Internet Access
-# - https://formulae.brew.sh/cask/private-internet-access
-cask "private-internet-access"
-
-
 # Remote Access
 # -------------
+
+# AnyDesk
+# - https://formulae.brew.sh/cask/anydesk
+cask "anydesk"
+
+# OneDrive
+# - https://formulae.brew.sh/cask/onedrive
+cask "onedrive"
 
 # TeamViewer
 # - https://formulae.brew.sh/cask/teamviewer
@@ -182,6 +194,14 @@ cask "bluesnooze"
 # Android File Transfer
 # - https://formulae.brew.sh/cask/android-file-transfer
 cask "android-file-transfer"
+
+
+# VPNs
+# ----
+
+# Private Internet Access
+# - https://formulae.brew.sh/cask/private-internet-access
+cask "private-internet-access"
 
 
 # Fonts
