@@ -71,3 +71,14 @@ Turn on [Settings Sync](https://code.visualstudio.com/docs/configure/settings-sy
 and sign in with your GitHub account
 to automatically sync settings, extensions, 
 and keyboard shortcuts across devices.
+
+
+## Background
+
+Dotfile repositories
+
+
+## Examples
+
+- [chezmoi-based dotfile repositories](https://www.chezmoi.io/links/dotfile-repos/)
+- 
