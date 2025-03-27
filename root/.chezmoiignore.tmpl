@@ -1,0 +1,32 @@
+# Ignore patterns in target path.
+# - https://www.chezmoi.io/reference/special-files/chezmoiignore/
+# - https://github.com/twpayne/dotfiles/blob/master/home/.chezmoiignore.tmpl
+
+
+{{ if ne .chezmoi.os "darwin" }}
+.chezmoiscripts/osx/**
+.config/homebrew
+{{ end }}
+
+{{ if ne .chezmoi.os "linux" }}
+.chezmoiscripts/linux/**
+.local/share/fonts
+{{ end }}
+
+{{ if ne .chezmoi.os "windows" }}
+.chezmoiscripts/windows/**
+{{ else }}
+.bash_aliases
+.config/git/cookies
+.config/psql
+.gnupg
+.gnupg/**
+.inputrc
+.oh-my-zsh
+.oh-my-zsh/**
+.ssh/id_rsa
+.ssh/id_rsa.pub
+.tmux.conf
+.zprofile
+.zshrc
+{{ end }}
