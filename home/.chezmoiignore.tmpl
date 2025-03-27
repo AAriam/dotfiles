@@ -3,20 +3,21 @@
 # - https://github.com/twpayne/dotfiles/blob/master/home/.chezmoiignore.tmpl
 
 
-/**/README.md
+**/README.md
 
 {{ if ne .chezmoi.os "darwin" }}
-.chezmoiscripts/osx/**
-.config/homebrew
+.chezmoiscripts/darwin/**/*
+{{ .vscode.path.user_dir.darwin }}/**/*
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
-.chezmoiscripts/linux/**
-.local/share/fonts
+.chezmoiscripts/linux/**/*
+{{ .vscode.path.user_dir.linux }}/**/*
 {{ end }}
 
 {{ if ne .chezmoi.os "windows" }}
-.chezmoiscripts/windows/**
+.chezmoiscripts/windows/**/*
+{{ .vscode.path.user_dir.windows }}/**/*
 {{ else }}
 .bash_aliases
 .config/git/cookies
