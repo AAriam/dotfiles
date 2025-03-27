@@ -3,6 +3,12 @@
         "editor.formatOnType": true
     },
     "dev.containers.logLevel": "trace",
+    // Dotfiles Repository:
+    // - https://code.visualstudio.com/docs/devcontainers/containers#_personalizing-with-dotfile-repositories
+    "dotfiles.repository": "aariam/dotfiles",
+    "dotfiles.targetPath": "~/dotfiles",
+    "dotfiles.installCommand": "install.sh",
+    //
     "editor.fontFamily": "JetBrains Mono, Consolas, 'Courier New', monospace",
     "editor.fontSize": 12,
     "editor.fontWeight": "400",
