@@ -3,7 +3,7 @@
 
 set -eufo pipefail
 
-brew bundle --file=/dev/stdin <<EOF
+brew bundle install --file=/dev/stdin <<EOF
 
 {{ range .brewfile.tap -}}
 tap {{ . | quote }}
