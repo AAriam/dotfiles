@@ -9,10 +9,6 @@
 
 # Homebrew
 # --------
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/cask-fonts"
-tap "homebrew/core"
 tap "homebrew/services"
 
 # Others
@@ -25,10 +21,23 @@ tap "buo/cask-upgrade"
 # Installs
 # ========
 
+# Shells
+# ------
+
 brew "bash"
+brew 'bash-completion'
+brew "z"
+brew "zsh"
+brew "zsh-autosuggestions"
+brew "zsh-completions"
+brew "zsh-syntax-highlighting"
+
+
+
 brew "gh"
 brew "git"
 brew "gnupg"
+brew "make"
 
 # MAS-CLI
 # - https://github.com/mas-cli/mas
@@ -50,14 +59,15 @@ brew "wget"
 # - https://github.com/whalebrew/whalebrew
 brew "whalebrew"
 
-brew "z"
-brew "zsh"
+
 
 
 # Casks
 # =====
+# - https://formulae.brew.sh/cask/
+
 # set arguments for all cask commands
-cask_args appdir: "/Applications", require_sha: true
+cask_args appdir: "/Applications", require_sha: false
 
 
 # Software Engineering
@@ -77,7 +87,7 @@ cask "jupyterlab"
 
 # Miniforge
 # - https://formulae.brew.sh/cask/miniforge
-cask "miniforge"
+cask "miniforge", postinstall: "${HOMEBREW_PREFIX}/bin/conda init --all -vv"
 
 # VSCode
 # - https://formulae.brew.sh/cask/visual-studio-code
@@ -98,6 +108,14 @@ cask "iterm2"
 # MacTeX
 # - https://formulae.brew.sh/cask/mactex
 cask "mactex"
+
+
+# Graphics
+# --------
+
+# GIMP
+# - https://formulae.brew.sh/cask/gimp
+cask "gimp"
 
 
 # Browsers
@@ -127,6 +145,10 @@ cask "lastpass"
 # Communication
 # -------------
 
+# Discord
+# - https://formulae.brew.sh/cask/discord
+cask "discord"
+
 # Microsoft Teams
 # - https://formulae.brew.sh/cask/microsoft-teams
 cask "microsoft-teams"
@@ -134,6 +156,10 @@ cask "microsoft-teams"
 # Telegram
 # - https://formulae.brew.sh/cask/telegram
 cask "telegram"
+
+# Webex
+# - https://formulae.brew.sh/cask/webex
+cask "webex"
 
 # Whatsapp
 # - https://formulae.brew.sh/cask/whatsapp
@@ -195,13 +221,9 @@ cask "bluesnooze"
 # - https://formulae.brew.sh/cask/android-file-transfer
 cask "android-file-transfer"
 
-
-# VPNs
-# ----
-
-# Private Internet Access
-# - https://formulae.brew.sh/cask/private-internet-access
-cask "private-internet-access"
+# Mathpix Snipping Tool
+# - https://formulae.brew.sh/cask/mathpix-snipping-tool
+cask "mathpix-snipping-tool"
 
 
 # Fonts
