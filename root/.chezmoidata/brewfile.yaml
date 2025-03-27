@@ -17,6 +17,9 @@ brewfile:
     # MAS-CLI
     # https://github.com/mas-cli/mas
     - mas
+    # LastPass CLI
+    # https://formulae.brew.sh/formula/lastpass-cli
+    - lastpass-cli
     - node
     - enchant
     - graphviz
