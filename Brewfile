@@ -1,9 +1,5 @@
 # Brewfile
 # ========
-
-
-# Resources
-# =========
 # - https://docs.brew.sh/Brew-Bundle-and-Brewfile
 # - https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f
 
@@ -11,12 +7,16 @@
 # Taps
 # ====
 
+# Homebrew
+# --------
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
 
+# Others
+# ------
 # brew-cask-upgrade
 # - https://github.com/buo/homebrew-cask-upgrade
 tap "buo/cask-upgrade"
@@ -54,21 +54,134 @@ brew "z"
 brew "zsh"
 
 
-
 # Casks
 # =====
-
 # set arguments for all cask commands
 cask_args appdir: "/Applications", require_sha: true
 
-cask "android-file-transfer"
-cask "bluesnooze"
+
+# Software Engineering
+# --------------------
+
+# Docker Desktop
+# - https://formulae.brew.sh/cask/docker
 cask "docker"
-cask "iterm2"
+
+# GitHub Desktop
+# - https://formulae.brew.sh/cask/github
+cask "github"
+
+# JupyterLab Desktop
+# - https://formulae.brew.sh/cask/jupyterlab
+cask "jupyterlab"
+
+# Miniforge
+# - https://formulae.brew.sh/cask/miniforge
+cask "miniforge"
 
 # VSCode
 # - https://formulae.brew.sh/cask/visual-studio-code
 cask "visual-studio-code"
+
+
+# Terminals
+# ---------
+
+# iTerm2
+# - https://formulae.brew.sh/cask/iterm2
+cask "iterm2"
+
+
+# Browsers
+# --------
+
+# Brave
+# - https://formulae.brew.sh/cask/brave-browser
+cask "brave-browser"
+
+# Chrome
+# - https://formulae.brew.sh/cask/google-chrome
+cask "google-chrome"
+
+# Tor
+# - https://formulae.brew.sh/cask/tor-browser
+cask "tor-browser"
+
+
+# Password Managers
+# -----------------
+
+# LastPass
+# - https://formulae.brew.sh/cask/lastpass
+cask "lastpass"
+
+
+# Communication
+# -------------
+
+# Telegram
+# - https://formulae.brew.sh/cask/telegram
+cask "telegram"
+
+# Whatsapp
+# - https://formulae.brew.sh/cask/whatsapp
+cask "whatsapp"
+
+# Zoom
+# - https://formulae.brew.sh/cask/zoom
+cask "zoom"
+
+
+# Streaming Services
+# ------------------
+
+# Amazon Music
+# - https://formulae.brew.sh/cask/amazon-music
+cask "amazon-music"
+
+# Spotify
+# - https://formulae.brew.sh/cask/spotify
+cask "spotify"
+
+
+# Multimedia
+# ----------
+
+# OBS
+# - https://formulae.brew.sh/cask/obs
+cask "obs"
+
+# VLC Media Player
+# - https://formulae.brew.sh/cask/vlc
+cask "vlc"
+
+
+# VPNs
+# ----
+
+# Private Internet Access
+# - https://formulae.brew.sh/cask/private-internet-access
+cask "private-internet-access"
+
+
+# Remote Access
+# -------------
+
+# TeamViewer
+# - https://formulae.brew.sh/cask/teamviewer
+cask "teamviewer"
+
+
+# Utilities
+# ---------
+
+# Bluesnooze
+# - https://formulae.brew.sh/cask/bluesnooze
+cask "bluesnooze"
+
+# Android File Transfer
+# - https://formulae.brew.sh/cask/android-file-transfer
+cask "android-file-transfer"
 
 
 # Fonts
