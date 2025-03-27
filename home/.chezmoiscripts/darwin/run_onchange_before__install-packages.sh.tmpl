@@ -1,0 +1,28 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+brew bundle install --file=/dev/stdin <<EOF
+
+{{ range .brewfile.tap -}}
+tap {{ . | quote }}
+{{ end -}}
+
+{{ range .brewfile.brew -}}
+brew {{ . | quote }}
+{{ end -}}
+
+cask_args {{ .brewfile.cask_args }}
+
+{{ range .brewfile.cask -}}
+cask {{ . | quote }}
+{{ end -}}
+
+{{ range .brewfile.vscode -}}
+vscode {{ . | quote }}
+{{ end -}}
+
+EOF
+
+{{ end -}}
