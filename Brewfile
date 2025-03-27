@@ -33,7 +33,6 @@ brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
 
-
 brew "gh"
 brew "git"
 brew "gnupg"
@@ -58,8 +57,6 @@ brew "wget"
 # Whalebrew
 # - https://github.com/whalebrew/whalebrew
 brew "whalebrew"
-
-
 
 
 # Casks
@@ -238,25 +235,24 @@ cask "font-jetbrains-mono"
 # VSCode Extensions
 # =================
 
-vscode "ms-vscode-remote.vscode-remote-extensionpack"
 vscode "anan.jetbrains-darcula-theme"
 vscode "chadalen.vscode-jetbrains-icon-theme"
-vscode "graphql.vscode-graphql-syntax"
-vscode "ms-toolsai.jupyter-keymap"
-vscode "ms-vscode-remote.remote-ssh-edit"
-vscode "ms-vscode.remote-explorer"
-vscode "ms-azuretools.vscode-docker"
-vscode "shinotatwu-ds.file-tree-generator"
-vscode "waderyan.gitblame"
-vscode "mhutchie.git-graph"
 vscode "donjayamanne.githistory"
+vscode "eamodio.gitlens"
 vscode "github.copilot"
 vscode "github.copilot-chat"
-vscode "eamodio.gitlens"
-vscode "ms-toolsai.jupyter"
-vscode "ms-toolsai.vscode-jupyter-cell-tags"
-vscode "ms-toolsai.jupyter-renderers"
-vscode "ms-toolsai.vscode-jupyter-slideshow"
+vscode "graphql.vscode-graphql-syntax"
+vscode "james-yu.latex-workshop"
+vscode "mhutchie.git-graph"
+vscode "ms-azuretools.vscode-docker"
 vscode "ms-python.python"
-vscode "ms-python.debugpy"
-vscode "ms-python.vscode-pylance"
+vscode "ms-toolsai.jupyter"
+vscode "ms-toolsai.jupyter-keymap"
+vscode "ms-toolsai.jupyter-renderers"
+vscode "ms-toolsai.vscode-jupyter-cell-tags"
+vscode "ms-toolsai.vscode-jupyter-slideshow"
+vscode "ms-vscode-remote.remote-ssh-edit"
+vscode "ms-vscode-remote.vscode-remote-extensionpack"
+vscode "ms-vscode.remote-explorer"
+vscode "shinotatwu-ds.file-tree-generator"
+vscode "waderyan.gitblame"
