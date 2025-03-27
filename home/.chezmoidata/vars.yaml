@@ -1,0 +1,8 @@
+vscode:
+  path:
+    # https://code.visualstudio.com/docs/configure/settings#_settings-file-locations
+    # https://code.visualstudio.com/docs/configure/settings#_profile-settings
+    user_dir:
+      darwin: "Library/Application Support/Code/User"
+      linux: ".config/Code/User"
+      windows: "AppData/Roaming/Code/User"
