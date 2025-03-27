@@ -20,6 +20,12 @@ brewfile:
     # LastPass CLI
     # https://formulae.brew.sh/formula/lastpass-cli
     - lastpass-cli
+    # UV
+    # https://formulae.brew.sh/formula/uv
+    - uv
+    # Pixi
+    # https://formulae.brew.sh/formula/pixi
+    - pixi
     - node
     - enchant
     - graphviz
