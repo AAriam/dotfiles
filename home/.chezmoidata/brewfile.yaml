@@ -202,7 +202,7 @@ brewfile:
     # Amazon Music
     # - https://formulae.brew.sh/cask/amazon-music
     - >-
-      "amazon-music"
+      "amazon-music" if OS.mac? && MacOS.version >= :el_capitan && MacOS.version < :sonoma
 
     # Spotify
     # - https://formulae.brew.sh/cask/spotify
