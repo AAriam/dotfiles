@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-local-chezmoi:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ ubuntu-latest, macos-latest, windows-latest ]
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Test
+        run: |
+          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
+          chezmoi init --apply aariam/dotfiles
+  test-local-manual:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ ubuntu-latest, macos-latest, windows-latest ]
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Repository Checkout
+        uses: actions/checkout@v4
+      - name: Test
+        run: |
+          sh install.sh
