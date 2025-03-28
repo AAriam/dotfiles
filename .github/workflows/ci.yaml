@@ -54,8 +54,10 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
       - name: Install
+        shell: bash
         run: |
           sh install.sh --verbose
       - name: Home Directory
+        shell: bash
         run: |
-          tree -a $HOME
+          tree -a "$HOME"
