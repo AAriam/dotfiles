@@ -54,10 +54,13 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
       - name: Install
-        shell: bash
         run: |
           sh install.sh --verbose
       - name: Home Directory
-        shell: bash
+        if: runner.os != 'Windows'
         run: |
           tree -a "$HOME"
+      - name: Home Directory
+        if: runner.os == 'Windows'
+        run: |
+          tree "$HOME" /f /a
