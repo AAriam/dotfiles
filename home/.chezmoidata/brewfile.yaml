@@ -201,6 +201,7 @@ brewfile:
 
     # Amazon Music
     # - https://formulae.brew.sh/cask/amazon-music
+    # - `if` condition on macOS version: https://github.com/orgs/Homebrew/discussions/5675
     - >-
       "amazon-music" if OS.mac? && MacOS.version >= :el_capitan && MacOS.version < :sonoma
 
