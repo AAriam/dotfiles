@@ -103,19 +103,7 @@ jobs:
       - name: Home Directory Overview
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
-            WIN_HOME=$(cygpath -w "$HOME" 2>/dev/null || echo "$HOME" | sed -E 's|/c/|C:/|' | sed -E 's|/|\\|g')
-            powershell -Command "
-              # Print headers first with file paths first, attributes second, mode third
-              Write-Host '{0,-90} {1,-45} {2,-8}' -f 'FullName', 'Attributes', 'Mode'
-              
-              # Now process each file/folder with the new order
-              Get-ChildItem -Force -Path '${WIN_HOME}' |
-              Select-Object FullName, Attributes, Mode |
-              ForEach-Object { 
-                '{0,-90} {1,-45} {2,-8}' -f 
-                \$_.FullName, \$_.Attributes, \$_.Mode
-              }
-            "
+            cmd.exe /C "dir /q /a /o /s $HOME"
           else
             ls -lAh $HOME
           fi
