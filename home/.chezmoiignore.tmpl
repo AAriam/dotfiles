@@ -7,7 +7,7 @@
 
 {{ if ne .chezmoi.os "darwin" }}
 .chezmoiscripts/darwin/**/*
-{{ .vscode.path.user_dir.darwin }}
+Library/
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
@@ -17,7 +17,7 @@
 
 {{ if ne .chezmoi.os "windows" }}
 .chezmoiscripts/windows/**/*
-{{ .vscode.path.user_dir.windows }}
+AppData/
 {{ else }}
 .bash_aliases
 .config/git/cookies
