@@ -201,6 +201,11 @@ brewfile:
 
     # Amazon Music
     # - https://formulae.brew.sh/cask/amazon-music
+    #
+    # Notes
+    # -----
+    # - The app seems to have been discontinued and is not available on new macOS versions:
+    #   https://www.reddit.com/r/AmazonMusic/comments/1ejx0e7/mac_app_discontinued/
     # - `if` condition on macOS version: https://github.com/orgs/Homebrew/discussions/5675
     - >-
       "amazon-music" if OS.mac? && MacOS.version >= :el_capitan && MacOS.version < :sonoma
