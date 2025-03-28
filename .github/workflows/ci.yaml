@@ -25,6 +25,9 @@ jobs:
           - macos-14
           - macos-13
     runs-on: ${{ matrix.runner }}
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Clean Runner
         if: runner.os == 'Linux'
@@ -37,7 +40,6 @@ jobs:
         run: |
           chezmoi init --apply aariam/dotfiles --verbose
       - name: Home Directory Overview
-        shell: bash
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
             powershell -Command "Get-ChildItem -Force -Path $HOME | ForEach-Object { $_.FullName }"
@@ -45,7 +47,6 @@ jobs:
             ls -A $HOME
           fi
       - name: Home Directory Details
-        shell: bash
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
             tree "$HOME" /f /a
@@ -69,6 +70,9 @@ jobs:
           - macos-14
           - macos-13
     runs-on: ${{ matrix.runner }}
+    defaults:
+      run:
+        shell: bash
     steps:
         # Remove installed packages and files from the runner:
         # - https://github.com/actions/runner-images/issues/222
@@ -87,7 +91,6 @@ jobs:
         run: |
           sh install.sh --verbose
       - name: Home Directory Overview
-        shell: bash
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
             WIN_HOME=$(cygpath -w "$HOME" 2>/dev/null || echo "$HOME" | sed -E 's|/c/|C:/|' | sed -E 's|/|\\|g')
@@ -103,7 +106,6 @@ jobs:
             ls -lAh $HOME
           fi
       - name: Home Directory Details
-        shell: bash
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
             powershell -Command "tree '$HOME' /f /a"
