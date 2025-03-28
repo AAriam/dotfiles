@@ -43,14 +43,8 @@ jobs:
           "${HOME}/${CHEZMOI_BIN_DIR}/chezmoi" init --apply aariam/dotfiles --verbose
       - name: Home Directory Overview
         run: |
-          if [[ "$RUNNER_OS" == "Windows" ]]; then
-            cmd.exe /C "set"
-            cmd.exe /C "echo %USERPROFILE%"
-            cmd.exe /C "dir %USERPROFILE% /q/a/o/s"
-          else
-            echo "Home Directory: $HOME"
-            ls -lAh $HOME
-          fi
+          echo "Home Directory: $HOME"
+          ls -lAh $HOME
       - name: Home Directory Details
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
@@ -101,7 +95,8 @@ jobs:
             powershell -Command "echo \$env:USERPROFILE"
             powershell -Command "Get-ChildItem \$env:USERPROFILE -Recurse | Select-Object FullName, Attributes, Mode"
           else
-            ls -lAh $HOME
+            echo "Home Directory: $HOME"
+            
           fi
       - name: Home Directory Details
         run: |
