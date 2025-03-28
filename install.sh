@@ -10,14 +10,25 @@
 # - https://github.com/twpayne/dotfiles/blob/master/install.sh
 
 
-set -euo pipefail
+set -eu
 
-if [ ! "$(command -v chezmoi)" ]; then
+# Default installation directory
+bin_dir="$HOME/.local/bin"
+
+# If the first argument is a positional argument (i.e. not starting with '-'), 
+# use it as bin_dir.
+if [ "$#" -gt 0 ] && [ "${1#-}" = "$1" ]; then
+  bin_dir="$1"
+  shift
+fi
+
+if [ "$(command -v chezmoi)" ]; then
+  # chezmoi is already installed
+  chezmoi=chezmoi
+else
   # Install chezmoi
-  
-  # By default, chezmoi is installed to `./bin`.
-  bin_dir="$HOME/.local/bin"
   chezmoi="$bin_dir/chezmoi"
+  # By default, chezmoi is installed to `./bin`.
   # Installation location can be specified with the `-b` flag.
   # - https://www.chezmoi.io/install/#one-line-binary-install
   if [ "$(command -v curl)" ]; then
@@ -28,14 +39,11 @@ if [ ! "$(command -v chezmoi)" ]; then
     echo "To install chezmoi, you must have curl or wget installed." >&2
     exit 1
   fi
-else
-  # Already installed
-  chezmoi=chezmoi
 fi
 
 # Get the local path to this dotfiles repository
-# by finding this script's directory.
+# by finding this script's directory path.
 # - https://stackoverflow.com/a/29834779/12156188
 script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 # Use `exec` to replace current process with `chezmoi init`
-exec "$chezmoi" init --apply "--source=$script_dir"
+exec "$chezmoi" init --apply "--source=$script_dir" "$@"
