@@ -67,11 +67,19 @@ jobs:
       - name: Install
         run: |
           sh install.sh --verbose
-      - name: Home Directory
-        if: runner.os != 'Windows'
+      - name: Home Directory Overview
+        shell: bash
         run: |
-          tree -a "$HOME"
-      - name: Home Directory
-        if: runner.os == 'Windows'
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            powershell -Command "Get-ChildItem -Force -Path $HOME | ForEach-Object { $_.FullName }"
+          else
+            ls -A $HOME
+          fi
+      - name: Home Directory Details
+        shell: bash
         run: |
-          tree "$HOME" /f /a
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            tree "$HOME" /f /a
+          else
+            tree -a "$HOME"
+          fi
