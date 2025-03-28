@@ -5,7 +5,6 @@
 
 brewfile:
   tap:
-    - homebrew/services
     # Brew-Cask-Upgrade
     # https://github.com/buo/homebrew-cask-upgrade
     - buo/cask-upgrade
