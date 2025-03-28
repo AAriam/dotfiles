@@ -18,7 +18,7 @@ jobs:
       - name: Test
         run: |
           sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
-          chezmoi init --apply aariam/dotfiles
+          chezmoi init --apply aariam/dotfiles --verbose
   test-local-manual:
     strategy:
       fail-fast: false
@@ -30,4 +30,4 @@ jobs:
         uses: actions/checkout@v4
       - name: Test
         run: |
-          sh install.sh
+          sh install.sh --verbose
