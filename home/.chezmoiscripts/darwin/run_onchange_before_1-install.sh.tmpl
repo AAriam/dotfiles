@@ -6,21 +6,21 @@ set -eufo pipefail
 brew bundle install --verbose --file=/dev/stdin <<EOF
 
 {{ range .brewfile.tap -}}
-tap {{ . | quote }}
+tap {{ . }}
 {{ end -}}
 
 {{ range .brewfile.brew -}}
-brew {{ . | quote }}
+brew {{ . }}
 {{ end -}}
 
 cask_args {{ .brewfile.cask_args }}
 
 {{ range .brewfile.cask -}}
-cask {{ . | quote }}
+cask {{ . }}
 {{ end -}}
 
 {{ range .brewfile.vscode -}}
-vscode {{ . | quote }}
+vscode {{ . }}
 {{ end -}}
 
 EOF

@@ -7,45 +7,72 @@ brewfile:
   tap:
     # Brew-Cask-Upgrade
     # https://github.com/buo/homebrew-cask-upgrade
-    - buo/cask-upgrade
+    - >-
+      "buo/cask-upgrade"
   brew:
-    - gh
-    - git
-    - gnupg
-    - make
+    - >-
+      "gh"
+    - >-
+      "git"
+    - >-
+      "gnupg"
+    - >-
+      "make"
     # MAS-CLI
     # https://github.com/mas-cli/mas
-    - mas
+    - >-
+      "mas"
     # LastPass CLI
     # https://formulae.brew.sh/formula/lastpass-cli
-    - lastpass-cli
+    - >-
+      "lastpass-cli"
     # UV
     # https://formulae.brew.sh/formula/uv
-    - uv
+    - >-
+      "uv"
     # Pixi
     # https://formulae.brew.sh/formula/pixi
-    - pixi
-    - node
-    - enchant
-    - graphviz
-    - libmagic
-    - python
-    - python-tk
-    - redis
-    - tokei
-    - tree
-    - wget
+    - >-
+      "pixi"
+    - >-
+      "node"
+    - >-
+      "enchant"
+    - >-
+      "graphviz"
+    - >-
+      "libmagic"
+    - >-
+      "python"
+    - >-
+      "python-tk"
+    - >-
+      "redis"
+    - >-
+      "tokei"
+    - >-
+      "tree"
+    - >-
+      "wget"
     # Shells
-    - bash
-    - bash-completion
-    - z
-    - zsh
-    - zsh-autosuggestions
-    - zsh-completions
-    - zsh-syntax-highlighting
+    - >-
+      "bash"
+    - >-
+      "bash-completion"
+    - >-
+      "z"
+    - >-
+      "zsh"
+    - >-
+      "zsh-autosuggestions"
+    - >-
+      "zsh-completions"
+    - >-
+      "zsh-syntax-highlighting"
     # Whalebrew
     # - https://github.com/whalebrew/whalebrew
-    - whalebrew
+    - >-
+      "whalebrew"
   cask_args: >-
     appdir: "/Applications", require_sha: false
   cask:
@@ -56,24 +83,28 @@ brewfile:
 
     # Docker Desktop
     # - https://formulae.brew.sh/cask/docker
-    - docker
+    - >-
+      "docker"
 
     # GitHub Desktop
     # - https://formulae.brew.sh/cask/github
-    - github
+    - >-
+      "github"
 
     # JupyterLab Desktop
     # - https://formulae.brew.sh/cask/jupyterlab
-    - jupyterlab
+    - >-
+      "jupyterlab"
 
     # Miniforge
     # - https://formulae.brew.sh/cask/miniforge
     - >-
-      miniforge, postinstall: "${HOMEBREW_PREFIX}/bin/conda init --all -vv"
+      "miniforge", postinstall: "${HOMEBREW_PREFIX}/bin/conda init --all -vv"
 
     # VSCode
     # - https://formulae.brew.sh/cask/visual-studio-code
-    - visual-studio-code
+    - >-
+      "visual-studio-code"
 
 
     # Terminals
@@ -81,7 +112,8 @@ brewfile:
 
     # iTerm2
     # - https://formulae.brew.sh/cask/iterm2
-    - iterm2
+    - >-
+      "iterm2"
 
 
     # Writing
@@ -89,7 +121,8 @@ brewfile:
 
     # MacTeX
     # - https://formulae.brew.sh/cask/mactex
-    - mactex
+    - >-
+      "mactex"
 
 
     # Graphics
@@ -97,7 +130,8 @@ brewfile:
 
     # GIMP
     # - https://formulae.brew.sh/cask/gimp
-    - gimp
+    - >-
+      "gimp"
 
 
     # Browsers
@@ -105,15 +139,18 @@ brewfile:
 
     # Brave
     # - https://formulae.brew.sh/cask/brave-browser
-    - brave-browser
+    - >-
+      "brave-browser"
 
     # Chrome
     # - https://formulae.brew.sh/cask/google-chrome
-    - google-chrome
+    - >-
+      "google-chrome"
 
     # Tor
     # - https://formulae.brew.sh/cask/tor-browser
-    - tor-browser
+    - >-
+      "tor-browser"
 
 
     # Password Managers
@@ -121,7 +158,8 @@ brewfile:
 
     # LastPass
     # - https://formulae.brew.sh/cask/lastpass
-    - lastpass
+    - >-
+      "lastpass"
 
 
     # Communication
@@ -129,27 +167,33 @@ brewfile:
 
     # Discord
     # - https://formulae.brew.sh/cask/discord
-    - discord
+    - >-
+      "discord"
 
     # Microsoft Teams
     # - https://formulae.brew.sh/cask/microsoft-teams
-    - microsoft-teams
+    - >-
+      "microsoft-teams"
 
     # Telegram
     # - https://formulae.brew.sh/cask/telegram
-    - telegram
+    - >-
+      "telegram"
 
     # Webex
     # - https://formulae.brew.sh/cask/webex
-    - webex
+    - >-
+      "webex"
 
     # Whatsapp
     # - https://formulae.brew.sh/cask/whatsapp
-    - whatsapp
+    - >-
+      "whatsapp"
 
     # Zoom
     # - https://formulae.brew.sh/cask/zoom
-    - zoom
+    - >-
+      "zoom"
 
 
     # Streaming Services
@@ -157,11 +201,13 @@ brewfile:
 
     # Amazon Music
     # - https://formulae.brew.sh/cask/amazon-music
-    - amazon-music
+    - >-
+      "amazon-music"
 
     # Spotify
     # - https://formulae.brew.sh/cask/spotify
-    - spotify
+    - >-
+      "spotify"
 
 
     # Multimedia
@@ -169,11 +215,13 @@ brewfile:
 
     # OBS
     # - https://formulae.brew.sh/cask/obs
-    - obs
+    - >-
+      "obs"
 
     # VLC Media Player
     # - https://formulae.brew.sh/cask/vlc
-    - vlc
+    - >-
+      "vlc"
 
 
     # Remote Access
@@ -181,15 +229,18 @@ brewfile:
 
     # AnyDesk
     # - https://formulae.brew.sh/cask/anydesk
-    - anydesk
+    - >-
+      "anydesk"
 
     # OneDrive
     # - https://formulae.brew.sh/cask/onedrive
-    - onedrive
+    - >-
+      "onedrive"
 
     # TeamViewer
     # - https://formulae.brew.sh/cask/teamviewer
-    - teamviewer
+    - >-
+      "teamviewer"
 
 
     # Utilities
@@ -197,15 +248,18 @@ brewfile:
 
     # Bluesnooze
     # - https://formulae.brew.sh/cask/bluesnooze
-    - bluesnooze
+    - >-
+      "bluesnooze"
 
     # Android File Transfer
     # - https://formulae.brew.sh/cask/android-file-transfer
-    - android-file-transfer
+    - >-
+      "android-file-transfer"
 
     # Mathpix Snipping Tool
     # - https://formulae.brew.sh/cask/mathpix-snipping-tool
-    - mathpix-snipping-tool
+    - >-
+      "mathpix-snipping-tool"
 
 
     # Fonts
@@ -214,26 +268,48 @@ brewfile:
     # JetBrains Mono
     # - https://www.jetbrains.com/lp/mono/
     # - https://formulae.brew.sh/cask/font-jetbrains-mono
-    - font-jetbrains-mono
+    - >-
+      "font-jetbrains-mono"
   vscode:
-    - anan.jetbrains-darcula-theme
-    - chadalen.vscode-jetbrains-icon-theme
-    - donjayamanne.githistory
-    - eamodio.gitlens
-    - github.copilot
-    - github.copilot-chat
-    - graphql.vscode-graphql-syntax
-    - james-yu.latex-workshop
-    - mhutchie.git-graph
-    - ms-azuretools.vscode-docker
-    - ms-python.python
-    - ms-toolsai.jupyter
-    - ms-toolsai.jupyter-keymap
-    - ms-toolsai.jupyter-renderers
-    - ms-toolsai.vscode-jupyter-cell-tags
-    - ms-toolsai.vscode-jupyter-slideshow
-    - ms-vscode-remote.remote-ssh-edit
-    - ms-vscode-remote.vscode-remote-extensionpack
-    - ms-vscode.remote-explorer
-    - shinotatwu-ds.file-tree-generator
-    - waderyan.gitblame
+    - >-
+      "anan.jetbrains-darcula-theme"
+    - >-
+      "chadalen.vscode-jetbrains-icon-theme"
+    - >-
+      "donjayamanne.githistory"
+    - >-
+      "eamodio.gitlens"
+    - >-
+      "github.copilot"
+    - >-
+      "github.copilot-chat"
+    - >-
+      "graphql.vscode-graphql-syntax"
+    - >-
+      "james-yu.latex-workshop"
+    - >-
+      "mhutchie.git-graph"
+    - >-
+      "ms-azuretools.vscode-docker"
+    - >-
+      "ms-python.python"
+    - >-
+      "ms-toolsai.jupyter"
+    - >-
+      "ms-toolsai.jupyter-keymap"
+    - >-
+      "ms-toolsai.jupyter-renderers"
+    - >-
+      "ms-toolsai.vscode-jupyter-cell-tags"
+    - >-
+      "ms-toolsai.vscode-jupyter-slideshow"
+    - >-
+      "ms-vscode-remote.remote-ssh-edit"
+    - >-
+      "ms-vscode-remote.vscode-remote-extensionpack"
+    - >-
+      "ms-vscode.remote-explorer"
+    - >-
+      "shinotatwu-ds.file-tree-generator"
+    - >-
+      "waderyan.gitblame"
