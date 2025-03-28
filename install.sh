@@ -10,7 +10,7 @@
 # - https://github.com/twpayne/dotfiles/blob/master/install.sh
 
 
-set -eu
+set -eux
 
 # Default installation directory
 bin_dir="$HOME/.local/bin"
