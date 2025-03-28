@@ -28,6 +28,8 @@ jobs:
     defaults:
       run:
         shell: bash
+    env:
+      CHEZMOI_BIN_DIR: .local/bin
     steps:
       - name: Clean Runner
         if: runner.os == 'Linux'
@@ -35,21 +37,29 @@ jobs:
         uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be
       - name: Chezmoi Installation
         run: |
-          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
+          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "${HOME}/${CHEZMOI_BIN_DIR}"
       - name: Dotfiles Installation
         run: |
-          chezmoi init --apply aariam/dotfiles --verbose
+          "${HOME}/${CHEZMOI_BIN_DIR}/chezmoi" init --apply aariam/dotfiles --verbose
       - name: Home Directory Overview
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
-            powershell -Command "Get-ChildItem -Force -Path $HOME | ForEach-Object { $_.FullName }"
+            WIN_HOME=$(cygpath -w "$HOME" 2>/dev/null || echo "$HOME" | sed -E 's|/c/|C:/|' | sed -E 's|/|\\|g')
+            powershell -Command "
+              Get-ChildItem -Force -Path '${WIN_HOME}' |
+              Select-Object Mode, Attributes, FullName, Length, CreationTime, LastWriteTime |
+              ForEach-Object { 
+                '{0,-6} {1,-40} {2,-80} {3,10} {4} {5}' -f 
+                \$_.Mode, \$_.Attributes, \$_.FullName, \$_.Length, \$_.CreationTime, \$_.LastWriteTime
+              }
+            "
           else
-            ls -A $HOME
+            ls -lAh $HOME
           fi
       - name: Home Directory Details
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
-            tree "$HOME" /f /a
+            powershell -Command "tree '$HOME' /f /a"
           else
             tree -a "$HOME"
           fi
