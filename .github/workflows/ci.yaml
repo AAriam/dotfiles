@@ -44,8 +44,10 @@ jobs:
       - name: Home Directory Overview
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
-            cmd.exe /c "dir %USERPROFILE% /q/a/o/s"
+            cmd.exe /C "echo %USERPROFILE%"
+            cmd.exe /C "dir %USERPROFILE% /q/a/o/s"
           else
+            echo "Home Directory: $HOME"
             ls -lAh $HOME
           fi
       - name: Home Directory Details
@@ -95,7 +97,7 @@ jobs:
       - name: Home Directory Overview
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
-            cmd.exe /c "dir %USERPROFILE% /q/a/o/s"
+            cmd.exe /C "dir %USERPROFILE% /q/a/o/s"
           else
             ls -lAh $HOME
           fi
