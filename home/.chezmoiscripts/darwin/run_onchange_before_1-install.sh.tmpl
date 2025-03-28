@@ -6,7 +6,11 @@ brew --version
 
 brew update
 
+# HOMEBREW_PREFIX is used in the Brewfile 
+# to run `postinstall` commands (see miniforge cask)
+# but is not set on GitHub's `macos-13` runner.
 export HOMEBREW_PREFIX=$(brew --prefix)
+
 brew bundle install --verbose --file=/dev/stdin <<EOF
 
 {{ range .brewfile.tap -}}
