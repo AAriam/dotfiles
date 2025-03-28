@@ -30,9 +30,11 @@ jobs:
         if: runner.os == 'Linux'
         # - https://github.com/jlumbroso/free-disk-space/
         uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be
-      - name: Install
+      - name: Chezmoi Installation
         run: |
           sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
+      - name: Dotfiles Installation
+        run: |
           chezmoi init --apply aariam/dotfiles --verbose
       - name: Home Directory Overview
         shell: bash
@@ -81,7 +83,7 @@ jobs:
         uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be
       - name: Repository Checkout
         uses: actions/checkout@v4
-      - name: Install
+      - name: Dotfiles Installation
         run: |
           sh install.sh --verbose
       - name: Home Directory Overview
@@ -90,7 +92,12 @@ jobs:
           if [[ "$RUNNER_OS" == "Windows" ]]; then
             WIN_HOME=$(cygpath -w "$HOME" 2>/dev/null || echo "$HOME" | sed -E 's|/c/|C:/|' | sed -E 's|/|\\|g')
             powershell -Command "
-              Get-ChildItem -Force -Path '${WIN_HOME}' | Select-Object Mode, Attributes, FullName, Length, CreationTime, LastWriteTime | Format-Table -AutoSize
+              Get-ChildItem -Force -Path '${WIN_HOME}' | 
+              Select-Object Mode, Attributes, FullName, Length, CreationTime, LastWriteTime | 
+              ForEach-Object { 
+                '{0,-6} {1,-40} {2,-80} {3,10} {4} {5}' -f 
+                `$_.Mode, `$_.Attributes, `$_.FullName, `$_.Length, `$_.CreationTime, `$_.LastWriteTime 
+              }
             "
           else
             ls -lAh $HOME
@@ -99,7 +106,7 @@ jobs:
         shell: bash
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
-            tree "$HOME" /f /a
+            powershell -Command "tree '$HOME' /f /a"
           else
             tree -a "$HOME"
           fi
