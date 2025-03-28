@@ -8,31 +8,48 @@ on:
   workflow_dispatch:
 
 jobs:
-  # test-local-chezmoi:
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       runner:
-  #         - ubuntu-24.04
-  #         - ubuntu-24.04-arm
-  #         - ubuntu-22.04
-  #         - ubuntu-22.04-arm
-  #         - ubuntu-20.04
-  #         - windows-2025
-  #         - windows-2022
-  #         - windows-2019
-  #         - macos-15
-  #         - macos-14
-  #         - macos-13
-  #   runs-on: ${{ matrix.runner }}
-  #   steps:
-  #     - name: Install
-  #       run: |
-  #         sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
-  #         chezmoi init --apply aariam/dotfiles --verbose
-  #     - name: Home Directory
-  #       run: |
-  #         tree -a $HOME
+  test-local-chezmoi:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner:
+          - ubuntu-24.04
+          - ubuntu-24.04-arm
+          - ubuntu-22.04
+          - ubuntu-22.04-arm
+          - ubuntu-20.04
+          - windows-2025
+          - windows-2022
+          - windows-2019
+          - macos-15
+          - macos-14
+          - macos-13
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Clean Runner
+        if: runner.os == 'Linux'
+        # - https://github.com/jlumbroso/free-disk-space/
+        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be
+      - name: Install
+        run: |
+          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
+          chezmoi init --apply aariam/dotfiles --verbose
+      - name: Home Directory Overview
+        shell: bash
+        run: |
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            powershell -Command "Get-ChildItem -Force -Path $HOME | ForEach-Object { $_.FullName }"
+          else
+            ls -A $HOME
+          fi
+      - name: Home Directory Details
+        shell: bash
+        run: |
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            tree "$HOME" /f /a
+          else
+            tree -a "$HOME"
+          fi
   test-local-manual:
     strategy:
       fail-fast: false
@@ -71,9 +88,12 @@ jobs:
         shell: bash
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
-            powershell -Command "Get-ChildItem -Force -Path $HOME | ForEach-Object { $_.FullName }"
+            WIN_HOME=$(cygpath -w "$HOME" 2>/dev/null || echo "$HOME" | sed -E 's|/c/|C:/|' | sed -E 's|/|\\|g')
+            powershell -Command "
+              Get-ChildItem -Force -Path '${WIN_HOME}' | Select-Object Mode, Attributes, FullName, Length, CreationTime, LastWriteTime | Format-Table -AutoSize
+            "
           else
-            ls -A $HOME
+            ls -lAh $HOME
           fi
       - name: Home Directory Details
         shell: bash
