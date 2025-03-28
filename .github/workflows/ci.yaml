@@ -105,11 +105,15 @@ jobs:
           if [[ "$RUNNER_OS" == "Windows" ]]; then
             WIN_HOME=$(cygpath -w "$HOME" 2>/dev/null || echo "$HOME" | sed -E 's|/c/|C:/|' | sed -E 's|/|\\|g')
             powershell -Command "
+              # Print headers first with file paths first, attributes second, mode third
+              Write-Host '{0,-90} {1,-45} {2,-8}' -f 'FullName', 'Attributes', 'Mode'
+              
+              # Now process each file/folder with the new order
               Get-ChildItem -Force -Path '${WIN_HOME}' |
-              Select-Object Mode, Attributes, FullName, Length, CreationTime, LastWriteTime |
+              Select-Object FullName, Attributes, Mode |
               ForEach-Object { 
-                '{0,-6} {1,-40} {2,-80} {3,10} {4} {5}' -f 
-                \$_.Mode, \$_.Attributes, \$_.FullName, \$_.Length, \$_.CreationTime, \$_.LastWriteTime
+                '{0,-90} {1,-45} {2,-8}' -f 
+                \$_.FullName, \$_.Attributes, \$_.Mode
               }
             "
           else
@@ -118,7 +122,7 @@ jobs:
       - name: Home Directory Details
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
-            powershell -Command "tree '$HOME' /f /a"
+            powershell -Command "tree '$env:HOME' /f /a"
           else
             tree -a "$HOME"
           fi
