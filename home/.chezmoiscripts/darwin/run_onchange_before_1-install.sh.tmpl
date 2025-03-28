@@ -1,11 +1,12 @@
 #!/bin/bash
 
-set -efo pipefail
+set -eufo pipefail
 
 brew --version
 
 brew update
 
+export HOMEBREW_PREFIX=$(brew --prefix)
 brew bundle install --verbose --file=/dev/stdin <<EOF
 
 {{ range .brewfile.tap -}}
