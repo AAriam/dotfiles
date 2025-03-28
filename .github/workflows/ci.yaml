@@ -32,6 +32,13 @@ jobs:
       CHEZMOI_BIN_DIR: .local/bin
     steps:
       - name: Clean Runner
+        # Remove installed packages and files from the runner:
+        # - https://github.com/actions/runner-images/issues/222
+        # - https://github.com/actions/runner-images/issues/709
+        # - https://github.com/actions/runner-images/issues/2840#issuecomment-790492173
+        # - https://github.com/actions/runner-images/issues/2875
+        # - https://github.com/apache/flink/blob/3c31e646a8efc13943b33d012a70d748cf11cdbc/tools/azure-pipelines/free_disk_space.sh
+        # - https://github.com/orgs/community/discussions/25678
         if: runner.os == 'Linux'
         # - https://github.com/jlumbroso/free-disk-space/
         uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be
@@ -44,11 +51,13 @@ jobs:
       - name: Home Directory Overview
         run: |
           echo "Home Directory: $HOME"
+          echo "Workspace Directory: $GITHUB_WORKSPACE"
+          echo "Home Directory Contents:"
           ls -lAh $HOME
       - name: Home Directory Details
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
-            powershell -Command "tree '$HOME' /f /a"
+            powershell -Command "tree \$env:HOME /f /a"
           else
             tree -a "$HOME"
           fi
@@ -73,16 +82,8 @@ jobs:
       run:
         shell: bash
     steps:
-        # Remove installed packages and files from the runner:
-        # - https://github.com/actions/runner-images/issues/222
-        # - https://github.com/actions/runner-images/issues/709
-        # - https://github.com/actions/runner-images/issues/2840#issuecomment-790492173
-        # - https://github.com/actions/runner-images/issues/2875
-        # - https://github.com/apache/flink/blob/3c31e646a8efc13943b33d012a70d748cf11cdbc/tools/azure-pipelines/free_disk_space.sh
-        # - https://github.com/orgs/community/discussions/25678
       - name: Clean Runner
         if: runner.os == 'Linux'
-        # - https://github.com/jlumbroso/free-disk-space/
         uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -91,17 +92,14 @@ jobs:
           sh install.sh --verbose
       - name: Home Directory Overview
         run: |
-          if [[ "$RUNNER_OS" == "Windows" ]]; then
-            powershell -Command "echo \$env:USERPROFILE"
-            powershell -Command "Get-ChildItem \$env:USERPROFILE -Recurse | Select-Object FullName, Attributes, Mode"
-          else
-            echo "Home Directory: $HOME"
-            
-          fi
+          echo "Home Directory: $HOME"
+          echo "Workspace Directory: $GITHUB_WORKSPACE"
+          echo "Home Directory Contents:"
+          ls -lAh $HOME
       - name: Home Directory Details
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
-            powershell -Command "tree '$env:HOME' /f /a"
+            powershell -Command "tree \$env:HOME /f /a"
           else
             tree -a "$HOME"
           fi
