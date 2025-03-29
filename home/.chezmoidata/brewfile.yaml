@@ -15,7 +15,11 @@ brewfile:
     - >-
       "git"
     - >-
+      "git-lfs"
+    - >-
       "gnupg"
+    - >-
+      "pinentry-mac"
     - >-
       "make"
     # MAS-CLI
