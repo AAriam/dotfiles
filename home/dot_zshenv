@@ -1,0 +1,19 @@
+# Zsh Configuration File
+# ======================
+# This file is sourced by all Zsh sessions, whether login or interactive.
+# It is intended for environment variables or settings
+# that need to apply globally, regardless of the shell type.
+# - https://zsh.sourceforge.io/Doc/Release/Files.html#Files
+# - https://wiki.archlinux.org/title/Zsh
+# - https://www.freecodecamp.org/news/how-do-zsh-configuration-files-work/
+
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_STATE_HOME="${HOME}/.local/state"
+export XDG_CACHE_HOME="${HOME}/.cache"
+
+# Set the path to the directory where
+# Zsh configuration files (dotfiles) 
+# are located (default: $HOME).
+# - https://www.reddit.com/r/zsh/comments/iq89wr/comment/g4soljs/
+ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
