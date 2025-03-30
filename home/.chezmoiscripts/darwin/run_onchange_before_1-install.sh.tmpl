@@ -2,9 +2,27 @@
 
 set -eufo pipefail
 
-brew --version
+
+if [ "$(command -v brew)" ]; then
+    # Homebrew is already installed
+else
+    # Install Homebrew
+    if [ "$(command -v curl)" ]; then
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    else
+        echo "To install Homebrew, you must have curl installed." >&2
+        exit 1
+    fi
+    # Reload shell profile to update the PATH for brew
+    if [ -f ~/.bash_profile ]; then
+        source ~/.bash_profile
+    elif [ -f ~/.zshrc ]; then
+        source ~/.zshrc
+    fi
+fi
 
 brew update
+brew --version
 
 # HOMEBREW_PREFIX is used in the Brewfile 
 # to run `postinstall` commands (see miniforge cask)
@@ -32,3 +50,8 @@ vscode {{ . }}
 {{ end -}}
 
 EOF
+
+
+# Install Oh-My-zsh
+# - https://github.com/ohmyzsh/ohmyzsh/wiki
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
