@@ -104,6 +104,16 @@ macos:
             When set to `true`, new documents will be saved to iCloud by default.
           type: bool
           value: false
+        AppleFontSmoothing:
+          summary: Font smoothing.
+          tags: [ io, display, font ]
+          description: |
+            Control the font smoothing level.
+            Can be used to enable subpixel rendering for fonts
+            on non-Retina displays
+            (see https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501).
+          type: int
+          value: 1
         AppleShowAllExtensions:
           summary: Toggle file extension visibility.
           tags: [ finder ]
@@ -198,4 +208,86 @@ macos:
             Show a warning when changing file extensions.
           type: bool
           value: false
-        
+    com.apple.screencapture:
+      summary: Screenshot settings.
+      tags: [ system, ui, screenshot ]
+      description: |
+        Settings related to screenshots, including their appearance and behavior.
+      setting:
+        location:
+          summary: Screenshot save location.
+          description: |
+            Default location where screenshots are saved.
+          type: str
+          value: ~/Desktop
+        type:
+          summary: Screenshot file format.
+          description: |
+            File format for screenshots; one of
+            `png`, `jpg`, `tiff`, `pdf`, or `gif`.
+          type: str
+          value: png
+        disable-shadow:
+          summary: Disable window shadow in screenshots.
+          description: |
+            When set to `true`, window shadows will not be included in screenshots.
+          type: bool
+          value: true
+    com.apple.screensaver:
+      summary: Screensaver settings.
+      tags: [ system, ui, screensaver ]
+      description: |
+        Settings related to the screensaver, including its appearance and behavior.
+      setting:
+        askForPassword:
+          summary: Ask for password after screensaver.
+          description: |
+            Require a password to unlock the screen after the screensaver starts.
+          type: bool
+          value: true
+        askForPasswordDelay:
+          summary: Delay before asking for password.
+          description: |
+            Time (in seconds) before the system asks for a password after the screensaver starts.
+          type: int
+          value: 5
+    com.apple.terminal:
+      summary: Terminal settings.
+      tags: [ system, ui, terminal ]
+      description: |
+        Settings related to the Terminal application, including its appearance and behavior.
+      setting:
+        StringEncodings:
+          summary: Terminal string encodings.
+          description: |
+            List of string encodings supported by the Terminal.
+          type: array
+          value: [ 4 ]  # Only UTF-8
+        SecureKeyboardEntry:
+          summary: Secure keyboard entry.
+          description: |
+            When set to `true`, the Terminal will not allow other applications
+            to intercept keystrokes while it is active
+            (cf. [StackExchange](https://security.stackexchange.com/a/47786/8918)).
+          type: bool
+          value: true
+    /Library/Preferences/com.apple.loginwindow:
+      summary: Login window settings.
+      tags: [ system, ui, login ]
+      description: |
+        Settings related to the login window, including its appearance and behavior.
+      setting:
+        AdminHostInfo:
+          summary: Show admin host info.
+          description: |
+            Reveal IP address, hostname, OS version, and other information
+            about the admin host when clicking the clock in the login window.
+          type: str
+          value: HostName
+          sudo: true
+        showInputMenu:
+          summary: Language input menu in login window.
+          description: |
+            Show the input menu (keyboard layout) in the login window.
+          type: bool
+          value: true
