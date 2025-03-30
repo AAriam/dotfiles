@@ -1,4 +1,4 @@
-{{ $fontDir := index .var .chezmoi.os }}
+{{ $fontDir := index .var.font_dir .chezmoi.os }}
 
 
 # powerlevel10k (oh-my-zsh theme) fonts
