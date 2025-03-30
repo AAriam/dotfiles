@@ -3,6 +3,23 @@
 set -eufo pipefail
 
 
+{{- if .macos.defaults }}
+{{-   range .macos.defaults }}
+defaults write {{ if .domain }}{{ .domain }}{{ else }}-g{{ end }} {{ .key }} {{ if .type }}-{{ .type }}{{ else }}-string{{ end }}
+{{-     if eq (typeOf .value) "map" }}
+{{-       range $k, $v := .value }}{{ $k }} {{ $v | quote }} {{- end }}
+{{-     else if eq (typeOf .value) "slice" }}
+{{-       range $i, $v := .value }}{{ $v | quote }}{{- if ne (add $i 1) (len .value) }} {{- end }}{{- end }}
+{{-     else }}
+{{        .value | quote }}
+{{-     end }}
+{{-   end }}
+{{- else }}
+# No macos defaults found.
+{{- end }}
+
+
+
 # macOS Dock Configurations
 # =========================
 #
