@@ -1,0 +1,63 @@
+{{ $fontDir := index .var .chezmoi.os }}
+
+
+# powerlevel10k (oh-my-zsh theme) fonts
+# https://github.com/romkatv/powerlevel10k-media/
+{{- range (list
+      "MesloLGS NF Regular.ttf"
+      "MesloLGS NF Bold.ttf"
+      "MesloLGS NF Italic.ttf"
+      "MesloLGS NF Bold Italic.ttf") }}
+
+"{{ $fontDir }}/{{ . }}":
+  type: file
+  url: https://github.com/romkatv/powerlevel10k-media/raw/master/{{ . }}
+  refreshPeriod: 168h
+
+{{- end }}
+
+
+# JetBrains Mono
+# To use in VS Code.
+# - https://www.jetbrains.com/lp/mono/
+# - https://formulae.brew.sh/cask/font-jetbrains-mono
+{{- range (list
+      "JetBrainsMono-Bold"
+      "JetBrainsMono-BoldItalic"
+      "JetBrainsMono-ExtraBold"
+      "JetBrainsMono-ExtraBoldItalic"
+      "JetBrainsMono-ExtraLight"
+      "JetBrainsMono-ExtraLightItalic"
+      "JetBrainsMono-Italic"
+      "JetBrainsMono-Light"
+      "JetBrainsMono-LightItalic"
+      "JetBrainsMono-Medium"
+      "JetBrainsMono-MediumItalic"
+      "JetBrainsMono-Regular"
+      "JetBrainsMono-SemiBold"
+      "JetBrainsMono-SemiBoldItalic"
+      "JetBrainsMono-Thin"
+      "JetBrainsMono-ThinItalic"
+      "JetBrainsMonoNL-Bold"
+      "JetBrainsMonoNL-BoldItalic"
+      "JetBrainsMonoNL-ExtraBold"
+      "JetBrainsMonoNL-ExtraBoldItalic"
+      "JetBrainsMonoNL-ExtraLight"
+      "JetBrainsMonoNL-ExtraLightItalic"
+      "JetBrainsMonoNL-Italic"
+      "JetBrainsMonoNL-Light"
+      "JetBrainsMonoNL-LightItalic"
+      "JetBrainsMonoNL-Medium"
+      "JetBrainsMonoNL-MediumItalic"
+      "JetBrainsMonoNL-Regular"
+      "JetBrainsMonoNL-SemiBold"
+      "JetBrainsMonoNL-SemiBoldItalic"
+      "JetBrainsMonoNL-Thin"
+      "JetBrainsMonoNL-ThinItalic") }}
+
+"{{ $fontDir }}/{{ . }}.ttf":
+  type: file
+  url: https://github.com/JetBrains/JetBrainsMono/raw/{{ (gitHubLatestRelease "JetBrains/JetBrainsMono").TagName }}/fonts/ttf/{{ . }}.ttf
+  refreshPeriod: 168h
+
+{{- end }}
