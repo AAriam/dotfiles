@@ -1,9 +1,3 @@
-{{- $paths := list }}
-{{- range $_, $path := list "/opt/homebrew/bin" "/usr/local/bin" }}
-{{-   if stat $path }}
-{{-     $paths = mustAppend $paths $path }}
-{{-   end }}
-{{- end }}
 {{- $homeDir := .chezmoi.homeDir }}
 {{- range $_, $relPath := list "bin" "go/bin" ".cargo/bin" ".local/bin" }}
 {{    $path := joinPath $homeDir $relPath }}
@@ -17,6 +11,26 @@ export PATH={{ toStrings $paths | join ":" }}:$PATH
 
 
 export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+
+
+# Homebrew Initialization
+# =======================
+#
+# References
+# ----------
+# - https://docs.brew.sh/Installation#post-installation-steps
+# - https://github.com/twpayne/dotfiles/blob/448f34defa386443c39a6a5337a2e8fabfdd404a/home/dot_zprofile.tmpl#L4-L5
+# - https://docs.brew.sh/FAQ#why-should-i-install-homebrew-in-the-default-location
+
+{{- range $_, $brew_path := list 
+    "/opt/homebrew/bin/brew"
+    "/usr/local/bin/brew"
+    "/home/linuxbrew/.linuxbrew/bin/brew"
+}}
+{{-   if stat $brew_path }}
+eval "$({{ $brew_path }} shellenv)"
+{{-   end }}
+{{- end }}
 
 
 # Conda/Mamba Initialization
