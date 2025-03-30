@@ -1,6 +1,24 @@
 # Git/GitHub Settings
 
 
+## Authenticating with GitHub
+
+You can securely access your account's resources 
+by [authenticating to GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github),
+using different credentials depending on where you authenticate.
+When you connect to a GitHub repository from Git,
+you will need to [authenticate with GitHub](https://docs.github.com/en/get-started/git-basics/set-up-git#authenticating-with-github-from-git)
+using either HTTPS or SSH.
+This is done by configuring git
+(see the `[credential "https://github.com"]` and `[credential "https://gist.github.com"]` tables
+in `home/dot_config/git/config.tmpl)
+to use [GitHub CLI](https://cli.github.com/)
+as its credential manager to [cache GitHub credentials in Git](https://docs.github.com/en/get-started/git-basics/caching-your-github-credentials-in-git).
+
+
+
+
+
 ## Commit Signature
 
 To enable [commit signature verification on GitHub](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification),
