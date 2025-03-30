@@ -46,8 +46,11 @@ jobs:
         run: |
           sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "${HOME}/${CHEZMOI_BIN_DIR}"
       - name: Dotfiles Installation
-        run: |
-          "${HOME}/${CHEZMOI_BIN_DIR}/chezmoi" init --apply aariam/dotfiles --verbose
+        run: >-
+          "${HOME}/${CHEZMOI_BIN_DIR}/chezmoi" init 
+            --apply aariam/dotfiles
+            --color on
+            --verbose
       - name: Home Directory Overview
         run: |
           echo "Home Directory: $HOME"
@@ -88,8 +91,10 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
       - name: Dotfiles Installation
-        run: |
-          sh install.sh --verbose
+        run: >-
+          sh install.sh
+          --color on
+          --verbose
       - name: Home Directory Overview
         run: |
           echo "Home Directory: $HOME"
