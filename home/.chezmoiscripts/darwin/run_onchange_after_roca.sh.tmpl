@@ -3,17 +3,18 @@
 set -eufo pipefail
 
 
-{{- if .macos.defaults }}
-{{-   range .macos.defaults }}
-defaults write {{ if .domain }}{{ .domain }}{{ else }}-g{{ end }} {{ .key }} {{ if .type }}-{{ .type }}{{ else }}-string{{ end }}
-{{-     if eq (typeOf .value) "map" }}
-{{-       range $k, $v := .value }}{{ $k }} {{ $v | quote }} {{- end }}
-{{-     else if eq (typeOf .value) "slice" }}
-{{-       range $i, $v := .value }}{{ $v | quote }}{{- if ne (add $i 1) (len .value) }} {{- end }}{{- end }}
-{{-     else }}
-{{        .value | quote }}
-{{-     end }}
-{{-   end }}
+{{ if and (index . "macos") (index .macos "defaults") -}}
+{{- range $domain, $entry := .macos.defaults -}}
+{{- range $key, $setting := $entry.setting -}}
+defaults write {{ $domain }} {{ $key }} {{ if (index $setting "type") }}-{{ $setting.type }}{{ else }}-string{{ end }} {{ if kindIs "map" $setting.value -}}
+{{- range $k, $v := $setting.value }}{{ $k }} {{ $v | quote }} {{ end }}
+{{ else if kindIs "slice" $setting.value }}
+{{- range $i, $v := .value }}{{ $v | quote }} {{ end }}
+{{ else }}
+{{- $setting.value | quote }}
+{{ end }}
+{{- end }}
+{{- end }}
 {{- else }}
 # No macos defaults found.
 {{- end }}
