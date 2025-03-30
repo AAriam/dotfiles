@@ -1,0 +1,52 @@
+{{- $paths := list }}
+{{- range $_, $path := list "/opt/homebrew/bin" "/usr/local/bin" }}
+{{-   if stat $path }}
+{{-     $paths = mustAppend $paths $path }}
+{{-   end }}
+{{- end }}
+{{- $homeDir := .chezmoi.homeDir }}
+{{- range $_, $relPath := list "bin" "go/bin" ".cargo/bin" ".local/bin" }}
+{{    $path := joinPath $homeDir $relPath }}
+{{-   if stat $path }}
+{{-     $paths = mustAppend $paths $path }}
+{{-   end }}
+{{- end }}
+{{- if $paths }}
+export PATH={{ toStrings $paths | join ":" }}:$PATH
+{{- end }}
+
+
+export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+
+
+# Conda/Mamba Initialization
+# ==========================
+#
+# References
+# ----------
+# - https://github.com/conda-forge/miniforge?tab=readme-ov-file#usage
+# - https://docs.conda.io/projects/conda/en/stable/dev-guide/deep-dives/activation.html
+# - https://docs.conda.io/projects/conda/en/stable/commands/init.html
+# - https://stackoverflow.com/questions/75264040/how-do-i-conda-init-if-i-dont-have-permission-to-edit-my-bashrc-file
+
+MINIFORGE_BASE_DIR="$(brew --prefix)/Caskroom/miniforge/base"
+if [ -d "$MINIFORGE_BASE_DIR" ]; then
+    __conda_setup="$("$MINIFORGE_BASE_DIR/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "$MINIFORGE_BASE_DIR/etc/profile.d/conda.sh" ]; then
+            . "$MINIFORGE_BASE_DIR/etc/profile.d/conda.sh"
+        else
+            export PATH="$MINIFORGE_BASE_DIR/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+
+    if [ -f "$MINIFORGE_BASE_DIR/etc/profile.d/mamba.sh" ]; then
+        . "$MINIFORGE_BASE_DIR/etc/profile.d/mamba.sh"
+    fi
+else
+    echo "Miniforge installation not found at $MINIFORGE_BASE_DIR."
+    exit 1
+fi
