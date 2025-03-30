@@ -1,3 +1,18 @@
-{{- if eq .chezmoi.os "darwin" }}
+# GPG Agent Options
+# =================
+#
+# References
+# ----------
+# - https://www.gnupg.org/documentation/manuals/gnupg/Agent-Options.html
+# - https://github.com/bfrg/gpg-guide/tree/master
+
+
+{{- if eq .chezmoi.os "darwin" -}}
 pinentry-program {{ output "which" "pinentry-mac" }}
 {{- end }}
+allow-loopback-pinentry
+
+# Cache Duration 
+# --------------
+default-cache-ttl 3600
+max-cache-ttl 86400
