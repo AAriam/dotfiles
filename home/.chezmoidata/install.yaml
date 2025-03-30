@@ -38,6 +38,9 @@ brewfile:
     # https://formulae.brew.sh/formula/pixi
     - >-
       "pixi"
+    # https://github.com/kcrawford/dockutil
+    - >-
+      "dockutil"
     - >-
       "node"
     - >-
