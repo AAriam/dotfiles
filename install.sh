@@ -44,6 +44,6 @@ fi
 # Get the local path to this dotfiles repository
 # by finding this script's directory path.
 # - https://stackoverflow.com/a/29834779/12156188
-script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
+CHEZMOI_SOURCE_DIR="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 # Use `exec` to replace current process with `chezmoi init`
-exec "$chezmoi" init --apply "--source=$script_dir" "$@"
+exec "$chezmoi" init --apply "--source=$CHEZMOI_SOURCE_DIR" "$@"
