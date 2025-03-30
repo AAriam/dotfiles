@@ -46,6 +46,8 @@ jobs:
         run: |
           sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "${HOME}/${CHEZMOI_BIN_DIR}"
       - name: Dotfiles Installation
+        env:
+          CHEZMOI_GITHUB_ACCESS_TOKEN: ${{ github.token }}
         run: >-
           "${HOME}/${CHEZMOI_BIN_DIR}/chezmoi" init 
           --apply aariam/dotfiles
@@ -91,6 +93,8 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
       - name: Dotfiles Installation
+        env:
+          CHEZMOI_GITHUB_ACCESS_TOKEN: ${{ github.token }}
         run: >-
           sh install.sh
           --color on
