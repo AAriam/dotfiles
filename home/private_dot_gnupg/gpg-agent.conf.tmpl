@@ -7,7 +7,7 @@
 # - https://github.com/bfrg/gpg-guide/tree/master
 
 
-{{- if eq .chezmoi.os "darwin" -}}
+{{ if eq .chezmoi.os "darwin" -}}
 pinentry-program {{ output "which" "pinentry-mac" }}
 {{- end }}
 allow-loopback-pinentry
