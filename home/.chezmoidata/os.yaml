@@ -1,0 +1,201 @@
+macos:
+  defaults:
+    # References
+    # ----------
+    # - https://macos-defaults.com/
+    # - https://github.com/mathiasbynens/dotfiles/blob/main/.macos
+    # - https://github.com/twpayne/dotfiles/blob/master/home/.chezmoiscripts/linux/run_onchange_before_install-packages.sh.tmpl
+    NSGlobalDomain:
+      setting:
+        # IO Settings (Keyboard, Mouse, Trackpad, Bluetooth, etc.)
+        # ===========
+        # Keyboard Settings
+        # -----------------
+        ApplePressAndHoldEnabled:
+          summary: Toggle the press-and-hold feature for keys.
+          tags: [ io, keyboard ]
+          description: |
+            When set to `true`, holding down a key will show the accent menu
+            instead of repeating the character.
+          type: bool
+          value: false
+        InitialKeyRepeat:
+          summary: Initial key repeat delay.
+          tags: [ io, keyboard ]
+          description: |
+            Time (in milliseconds) before 
+            a key starts repeating when held down.
+          type: int
+          value: 10
+        KeyRepeat:
+          summary: Key repeat rate.
+          tags: [ io, keyboard ]
+          description: |
+            Time (in milliseconds) between key repeats.
+          type: int
+          value: 1
+        AppleKeyboardUIMode:
+          summary: Keyboard UI mode.
+          tags: [ io, keyboard ]
+          description: |
+            - `3`: Keyboard will be in "full keyboard access" mode.
+              This allows e.g. to use the Tab key 
+              to navigate through all controls
+              in a window, not just text boxes and lists.
+          type: int
+          value: 3
+        NSAutomaticCapitalizationEnabled:
+          summary: Automatic word capitalization.
+          tags: [ io, keyboard ]
+          description: |
+            When set to `true`, the first letter of a sentence will be capitalized automatically.
+          type: bool
+          value: false
+        NSAutomaticDashSubstitutionEnabled:
+          summary: Automatic dash substitution.
+          tags: [ io, keyboard ]
+          description: |
+            Enable smart dashes to automatically substitute dash sequences
+            with the appropriate dash character.
+          type: bool
+          value: false
+        NSAutomaticPeriodSubstitutionEnabled:
+          summary: Automatic period substitution.
+          tags: [ io, keyboard ]
+          description: |
+            Enable smart periods to automatically substitute two spaces
+            with a period and a space.
+          type: bool
+          value: false
+        NSAutomaticInlinePredictionEnabled:
+          summary: Automatic inline prediction.
+          tags: [ io, keyboard ]
+          description: |
+            When set to `true`, the system will suggest words as you type.
+          type: bool
+          value: false
+        NSAutomaticQuoteSubstitutionEnabled:
+          summary: Automatic quote substitution.
+          tags: [ io, keyboard ]
+          description: |
+            Enable smart quotes to automatically substitute straight quotes
+            with curly quotes.
+          type: bool
+          value: false
+        NSAutomaticSpellingCorrectionEnabled:
+          summary: Automatic spelling correction.
+          tags: [ io, keyboard ]
+          description: |
+            When set to `true`, the system will automatically correct spelling errors.
+          type: bool
+          value: false
+        NSAutomaticTextCorrectionEnabled:
+          summary: Automatic text correction.
+          tags: [ io, keyboard ]
+          description: |
+            When set to `true`, the system will automatically correct text errors.
+          type: bool
+          value: false
+        # Other
+        NSDocumentSaveNewDocumentsToCloud:
+          summary: Save new documents to iCloud.
+          tags: [ io, storage, cloud ]
+          description: |
+            When set to `true`, new documents will be saved to iCloud by default.
+          type: bool
+          value: false
+        AppleShowAllExtensions:
+          summary: Toggle file extension visibility.
+          tags: [ finder ]
+          description: |
+            When set to `true`, all file extensions will be shown in Finder.
+          type: bool
+          value: true
+    com.apple.dock:
+      summary: Dock settings.
+      tags: [ system, ui, dock ]
+      description: |
+        Settings related to the Dock, including its appearance and behavior.
+      setting:
+        autohide:
+          summary: Toggle Dock auto-hide.
+          description: |
+            Automatically hide the dock when the mouse is not over it.
+          type: bool
+          value: true
+        autohide-delay:
+          summary: Delay before the Dock auto-hides.
+          description: |
+            Time (in seconds) before the Dock hides when not in use.
+          type: float
+          value: 0
+        autohide-time-modifier:
+          summary: Speed of Dock auto-hide.
+          description: |
+            Time (in seconds) it takes for the Dock to hide or show.
+          type: float
+          value: 0.5
+        orientation:
+          summary: Dock orientation.
+          description: |
+            The position of the Dock on the screen.
+            - `left`: Left side of the screen.
+            - `bottom`: Bottom of the screen.
+            - `right`: Right side of the screen.
+          type: str
+          value: bottom
+        show-recents:
+          summary: Show recent applications in the Dock.
+          description: |
+            When set to `true`, the Dock will show recently used applications.
+          type: bool
+          value: false
+        tilesize:
+          summary: Size of Dock icons.
+          description: |
+            The size of the icons (in pixels) in the Dock.
+          type: int
+          value: 36
+        mouse-over-hilite-stack:
+          summary: Highlight stack items on mouse over.
+          description: |
+            When set to `true`, stack items will be highlighted 
+            when the mouse is over them.
+          type: bool
+          value: true
+    com.apple.finder:
+      summary: Finder settings.
+      tags: [ system, ui, finder ]
+      description: |
+        Settings related to the Finder application, including its appearance and behavior.
+      setting:
+        FXPreferredViewStyle:
+          summary: Default Finder view style.
+          description: |
+            Default view style (four-letter code) for Finder windows:
+            - `Nlsv`: List view.
+            - `icnv`: Icon view.
+            - `clmv`: Column view.
+            - `Flwv`: Cover flow view.
+            - `glyv`: Gallery view.
+          type: str
+          value: Nlsv
+        _FXSortFoldersFirst:
+          summary: Folder sorting in Finder.
+          description: |
+            Keep folders at the top when sorting files in Finder.
+          type: bool
+          value: true
+        _FXShowPosixPathInTitle:
+          summary: Path in Finder title.
+          description: |
+            Show the full POSIX path as the Finder window title.
+          type: bool
+          value: true
+        FXEnableExtensionChangeWarning:
+          summary: Extension change warning.
+          description: |
+            Show a warning when changing file extensions.
+          type: bool
+          value: false
+        
