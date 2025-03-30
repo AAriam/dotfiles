@@ -1,4 +1,6 @@
 .oh-my-zsh:
+  # https://github.dev/twpayne/dotfiles/blob/master/home/.chezmoiscripts/linux/run_onchange_before_install-packages.sh.tmpl
+  # https://github.com/deluan/zsh-in-docker
   type: archive
   url: https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz
   exact: true
