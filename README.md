@@ -113,6 +113,13 @@ which uses [`brew bundle`](https://docs.brew.sh/Manpage#bundle-subcommand)
 to install them.
 
 
+### Configuration Files
+
+#### Zsh
+
+[Zsh](https://www.zsh.org/)
+
+
 ## External Settings
 
 
@@ -140,6 +147,7 @@ and keyboard shortcuts across devices.
 
 ## Examples
 
+- [Tom Payne's dotfiles](https://github.com/twpayne/dotfiles/) (creator of chezmoi)
 - [Mathias Bynens's dotfiles](https://github.com/mathiasbynens/dotfiles/tree/master) (including a popular [.macos](https://github.com/mathiasbynens/dotfiles/blob/master/.macos) configuration file)
 - [Anish Athalye's dotfiles](https://github.com/anishathalye/dotfiles) (creator of [dotbot](https://github.com/anishathalye/dotbot))
 - [sobolevn's dotfiles](https://github.com/sobolevn/dotfiles)
