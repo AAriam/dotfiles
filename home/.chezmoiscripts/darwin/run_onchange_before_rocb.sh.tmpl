@@ -5,6 +5,7 @@ set -eufo pipefail
 
 if [ "$(command -v brew)" ]; then
     # Homebrew is already installed
+    brew update
 else
     # Install Homebrew
     if [ "$(command -v curl)" ]; then
@@ -21,7 +22,7 @@ else
     fi
 fi
 
-brew update
+
 brew --version
 
 # HOMEBREW_PREFIX is used in the Brewfile 
