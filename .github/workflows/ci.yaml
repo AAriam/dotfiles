@@ -48,9 +48,9 @@ jobs:
       - name: Dotfiles Installation
         run: >-
           "${HOME}/${CHEZMOI_BIN_DIR}/chezmoi" init 
-            --apply aariam/dotfiles
-            --color on
-            --verbose
+          --apply aariam/dotfiles
+          --color on
+          --verbose
       - name: Home Directory Overview
         run: |
           echo "Home Directory: $HOME"
