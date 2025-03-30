@@ -58,6 +58,14 @@ ZSH_THEME_TERM_TAB_TITLE_IDLE="%15<..<%~%<<"
 # User Configurations
 # ====================
 
+
+# Make sure that gpg-agent is always started with login.
+# - https://github.com/bfrg/gpg-guide/blob/9f7580a64070d8e46529c30da7c8242f442531fc/gpg-agent.conf#L23C1-L29C7
+if ! pgrep -x -u "${USER}" gpg-agent &> /dev/null; then
+    gpg-connect-agent /bye &> /dev/null
+fi
+
+
 # Fix for 'gpg: signing failed: Inappropriate ioctl for device'
 # - https://stackoverflow.com/questions/57591432/gpg-signing-failed-inappropriate-ioctl-for-device-on-macos-with-maven
 # - https://github.com/Homebrew/homebrew-core/issues/14737#issuecomment-309848851
