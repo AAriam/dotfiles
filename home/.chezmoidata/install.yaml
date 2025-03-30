@@ -276,10 +276,15 @@ brewfile:
     # -----
 
     # JetBrains Mono
+    # To use in VS Code.
     # - https://www.jetbrains.com/lp/mono/
     # - https://formulae.brew.sh/cask/font-jetbrains-mono
-    - >-
-      "font-jetbrains-mono"
+    # - >-
+    #   "font-jetbrains-mono"
+    # - >-
+    #   "font-meslo-for-powerlevel10k"
+
+
   vscode:
     - >-
       "anan.jetbrains-darcula-theme"
