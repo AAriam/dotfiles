@@ -1,22 +1,6 @@
 {{ $fontDir := index .var.font_dir .chezmoi.os }}
 
 
-# powerlevel10k (oh-my-zsh theme) fonts
-# https://github.com/romkatv/powerlevel10k-media/
-{{- range (list
-      "MesloLGS NF Regular.ttf"
-      "MesloLGS NF Bold.ttf"
-      "MesloLGS NF Italic.ttf"
-      "MesloLGS NF Bold Italic.ttf") }}
-
-"{{ $fontDir }}/{{ . }}":
-  type: file
-  url: https://github.com/romkatv/powerlevel10k-media/raw/master/{{ . }}
-  refreshPeriod: 168h
-
-{{- end }}
-
-
 # JetBrains Mono
 # To use in VS Code.
 # - https://www.jetbrains.com/lp/mono/
@@ -58,6 +42,23 @@
 "{{ $fontDir }}/{{ . }}.ttf":
   type: file
   url: https://github.com/JetBrains/JetBrainsMono/raw/{{ (gitHubLatestRelease "JetBrains/JetBrainsMono").TagName }}/fonts/ttf/{{ . }}.ttf
+  refreshPeriod: 168h
+
+{{- end }}
+
+
+# Powerlevel10k (oh-my-zsh theme)
+# - https://github.com/romkatv/powerlevel10k-media/
+# - https://formulae.brew.sh/cask/font-meslo-for-powerlevel10k
+{{- range (list
+      "MesloLGS NF Regular.ttf"
+      "MesloLGS NF Bold.ttf"
+      "MesloLGS NF Italic.ttf"
+      "MesloLGS NF Bold Italic.ttf") }}
+
+"{{ $fontDir }}/{{ . }}":
+  type: file
+  url: https://github.com/romkatv/powerlevel10k-media/raw/master/{{ . }}
   refreshPeriod: 168h
 
 {{- end }}
