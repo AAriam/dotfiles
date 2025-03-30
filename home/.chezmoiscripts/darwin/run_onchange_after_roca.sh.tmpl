@@ -1,12 +1,81 @@
 #!/bin/bash
 
+# macOS Setup Script
+# ==================
+#
+# References
+# ----------
+# - https://github.com/mathiasbynens/dotfiles/blob/main/.macos
+
+
 set -eufo pipefail
 
 
+cleanup() {
+	# Close affected applications to apply changes
+	for app in \
+		"Activity Monitor" \
+		"Address Book" \
+		"Calendar" \
+		"cfprefsd" \
+		"Contacts" \
+		"Dock" \
+		"Finder" \
+		"Google Chrome Canary" \
+		"Google Chrome" \
+		"Mail" \
+		"Messages" \
+		"Opera" \
+		"Photos" \
+		"Safari" \
+		"SizeUp" \
+		"Spectacle" \
+		"SystemUIServer" \
+		"Terminal" \
+		"Transmission" \
+		"Tweetbot" \
+		"Twitter" \
+		"iCal"
+	do
+		killall "${app}" &> /dev/null
+	done
+}
+
+
+# Close any open System Preferences panes to prevent them from overriding
+# settings we’re about to change.
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# Make sure cleanup function is run on exit
+trap cleanup EXIT
+
+
+# Non `defaults` settings
+# =========================
+
+# Disable the sound effects on boot
+sudo nvram SystemAudioVolume=" "
+
+# Show the ~/Library folder
+chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+
+# Show the /Volumes folder
+sudo chflags nohidden /Volumes
+
+
+# macOS System Preferences
+# ========================
+# Read system preferences from $.macos.defaults and apply them using `defaults write`
 {{ if and (index . "macos") (index .macos "defaults") -}}
 {{- range $domain, $entry := .macos.defaults -}}
 {{- range $key, $setting := $entry.setting -}}
-defaults write {{ $domain }} {{ $key }} {{ if (index $setting "type") }}-{{ $setting.type }}{{ else }}-string{{ end }} {{ if kindIs "map" $setting.value -}}
+{{ if and (index $setting "sudo") ($setting.sudo) }}sudo {{ end }}defaults write {{ $domain }} {{ $key }} {{ if (index $setting "type") }}-{{ $setting.type }}{{ else }}-string{{ end }} {{ if kindIs "map" $setting.value -}}
 {{- range $k, $v := $setting.value }}{{ $k }} {{ $v | quote }} {{ end }}
 {{ else if kindIs "slice" $setting.value }}
 {{- range $i, $v := .value }}{{ $v | quote }} {{ end }}
@@ -16,9 +85,8 @@ defaults write {{ $domain }} {{ $key }} {{ if (index $setting "type") }}-{{ $set
 {{- end }}
 {{- end }}
 {{- else }}
-# No macos defaults found.
+echo "No macOS system preferences found in the configuration; skipping."
 {{- end }}
-
 
 
 # macOS Dock Configurations
@@ -28,8 +96,6 @@ defaults write {{ $domain }} {{ $key }} {{ if (index $setting "type") }}-{{ $set
 # ----------
 # - https://github.com/kcrawford/dockutil
 # - https://github.dev/twpayne/dotfiles/blob/master/home/.chezmoiscripts/linux/run_onchange_before_install-packages.sh.tmpl
-
-trap 'killall Dock' EXIT
 
 declare -a remove_labels=(
 	Launchpad
