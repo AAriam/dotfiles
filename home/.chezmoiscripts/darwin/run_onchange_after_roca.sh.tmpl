@@ -1,0 +1,38 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+
+# macOS Dock Configurations
+# =========================
+#
+# References
+# ----------
+# - https://github.com/kcrawford/dockutil
+# - https://github.dev/twpayne/dotfiles/blob/master/home/.chezmoiscripts/linux/run_onchange_before_install-packages.sh.tmpl
+
+trap 'killall Dock' EXIT
+
+declare -a remove_labels=(
+	Launchpad
+	Safari
+	Messages
+	Mail
+	Maps
+	Photos
+	FaceTime
+	Contacts
+	Reminders
+	Notes
+	Freeform
+	TV
+	Music
+	Keynote
+	Numbers
+	Pages
+	"App Store"
+)
+
+for label in "${remove_labels[@]}"; do
+	dockutil --no-restart --remove "${label}" || true
+done
