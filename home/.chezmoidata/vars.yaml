@@ -1,3 +1,9 @@
+var:
+  font_dir:
+    darwin: "Library/Fonts"
+    linux: ".local/share/fonts"
+    windows: "AppData/Local/Microsoft/Windows/Fonts"
+
 vscode:
   path:
     # https://code.visualstudio.com/docs/configure/settings#_settings-file-locations
