@@ -103,7 +103,7 @@ brewfile:
     # Miniforge
     # - https://formulae.brew.sh/cask/miniforge
     - >-
-      "miniforge", postinstall: "${HOMEBREW_PREFIX}/bin/conda init --all -vv"
+      "miniforge"
 
     # VSCode
     # - https://formulae.brew.sh/cask/visual-studio-code
