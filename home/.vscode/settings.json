@@ -5,9 +5,9 @@
     "dev.containers.logLevel": "trace",
     // Dotfiles Repository:
     // - https://code.visualstudio.com/docs/devcontainers/containers#_personalizing-with-dotfile-repositories
+    "dotfiles.installCommand": "install.sh",
     "dotfiles.repository": "aariam/dotfiles",
     "dotfiles.targetPath": "~/dotfiles",
-    "dotfiles.installCommand": "install.sh",
     //
     "editor.fontFamily": "JetBrains Mono, Consolas, 'Courier New', monospace",
     "editor.fontSize": 12,
@@ -68,6 +68,10 @@
         "editorBracketMatch.background": "#32614680",
         "editorBracketMatch.border": "#326146",
         "editorCodeLens.foreground": "#635656",
+        "editorError.background": "#0000",
+        "editorError.border": "#0000",
+        // Error squiggles
+        "editorError.foreground": "#ff00005a",
         "editorGroup.border": "#FFFFFF17",
         "editorGroupHeader.tabsBackground": "#181818",
         "editorGroupHeader.tabsBorder": "#2B2B2B",
@@ -77,11 +81,19 @@
         "editorGutter.modifiedBackground": "#0078D4",
         "editorIndentGuide.activeBackground1": "#6F737A",
         "editorIndentGuide.background1": "#313438",
+        "editorInfo.background": "#0000",
+        "editorInfo.border": "#0000",
+        // Info squiggles
+        "editorInfo.foreground": "#00ff005a",
         "editorLineNumber.activeForeground": "#9DA0A8",
         "editorLineNumber.foreground": "#4E5157",
         "editorOverviewRuler.border": "#010409",
         "editorRuler.foreground": "#313438",
         "editorSuggestWidget.background": "#3c3f41",
+        "editorWarning.background": "#0000",
+        "editorWarning.border": "#0000",
+        // Warning squiggles
+        "editorWarning.foreground": "#ffff005a",
         "editorWidget.background": "#202020",
         "editorWidget.border": "#323232",
         "errorForeground": "#F85149",
@@ -218,7 +230,7 @@
     // - C/C++ Themes (ms-vscode.cpptools-themes): https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-themes
     "workbench.colorTheme": "JetBrains Darcula Theme",
     "workbench.editorAssociations": {
-        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.copilotmd": "vscode.markdown.preview.editor"
     },
     // File Icon Themes:
     // - Material Icon Theme (pkief.material-icon-theme): https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme
