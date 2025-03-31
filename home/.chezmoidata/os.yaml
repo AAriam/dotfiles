@@ -152,7 +152,7 @@ macos:
             - `left`: Left side of the screen.
             - `bottom`: Bottom of the screen.
             - `right`: Right side of the screen.
-          type: str
+          type: string
           value: bottom
         show-recents:
           summary: Show recent applications in the Dock.
@@ -165,7 +165,7 @@ macos:
           description: |
             The size of the icons (in pixels) in the Dock.
           type: int
-          value: 36
+          value: 60
         mouse-over-hilite-stack:
           summary: Highlight stack items on mouse over.
           description: |
@@ -188,7 +188,7 @@ macos:
             - `clmv`: Column view.
             - `Flwv`: Cover flow view.
             - `glyv`: Gallery view.
-          type: str
+          type: string
           value: Nlsv
         _FXSortFoldersFirst:
           summary: Folder sorting in Finder.
@@ -218,14 +218,14 @@ macos:
           summary: Screenshot save location.
           description: |
             Default location where screenshots are saved.
-          type: str
+          type: string
           value: ~/Desktop
         type:
           summary: Screenshot file format.
           description: |
             File format for screenshots; one of
             `png`, `jpg`, `tiff`, `pdf`, or `gif`.
-          type: str
+          type: string
           value: png
         disable-shadow:
           summary: Disable window shadow in screenshots.
@@ -282,7 +282,7 @@ macos:
           description: |
             Reveal IP address, hostname, OS version, and other information
             about the admin host when clicking the clock in the login window.
-          type: str
+          type: string
           value: HostName
           sudo: true
         showInputMenu:
@@ -291,3 +291,4 @@ macos:
             Show the input menu (keyboard layout) in the login window.
           type: bool
           value: true
+          sudo: true
