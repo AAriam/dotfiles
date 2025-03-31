@@ -70,7 +70,7 @@
         "editorCodeLens.foreground": "#635656",
         "editorError.background": "#0000",
         "editorError.border": "#0000",
-        // Error squiggles
+        // Error squiggles (see `problems.visibility` to toggle all squiggles)
         "editorError.foreground": "#ff00005a",
         "editorGroup.border": "#FFFFFF17",
         "editorGroupHeader.tabsBackground": "#181818",
