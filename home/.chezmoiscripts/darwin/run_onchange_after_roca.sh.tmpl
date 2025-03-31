@@ -37,7 +37,7 @@ cleanup() {
 		"Twitter" \
 		"iCal"
 	do
-		killall "${app}" &> /dev/null
+		killall "${app}" &> /dev/null || true
 	done
 }
 
@@ -63,7 +63,7 @@ trap cleanup EXIT
 sudo nvram SystemAudioVolume=" "
 
 # Show the ~/Library folder
-chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+chflags nohidden ~/Library && (xattr -d com.apple.FinderInfo ~/Library &> /dev/null || true)
 
 # Show the /Volumes folder
 sudo chflags nohidden /Volumes
@@ -118,5 +118,5 @@ declare -a remove_labels=(
 )
 
 for label in "${remove_labels[@]}"; do
-	dockutil --no-restart --remove "${label}" || true
+	dockutil --no-restart --remove "${label}" &> /dev/null || true
 done
