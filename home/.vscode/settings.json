@@ -13,9 +13,12 @@
     "editor.fontSize": 12,
     "editor.fontWeight": "400",
     "editor.lineHeight": 1.5,
+    // Minimap: https://code.visualstudio.com/docs/getstarted/userinterface#_minimap
+    "editor.minimap.enabled": false,
     "editor.semanticHighlighting.enabled": false,
     "files.autoSave": "onFocusChange",
     "files.exclude": {
+        "**/__pycache__": true,
         "**/.git": false
     },
     "git.autofetch": true,
