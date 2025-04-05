@@ -18,7 +18,7 @@ macos:
             When set to `true`, holding down a key will show the accent menu
             instead of repeating the character.
           type: bool
-          value: false
+          value: true
         InitialKeyRepeat:
           summary: Initial key repeat delay.
           tags: [ io, keyboard ]
